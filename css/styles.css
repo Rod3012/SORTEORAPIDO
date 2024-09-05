@@ -1,53 +1,46 @@
+/* Estilos generales */
 body {
     font-family: 'Quicksand', sans-serif;
-    background-color: #f2f2f2; /* Fondo gris claro */
+    background-color: #f2f2f2;
     color: #333;
     text-align: center;
-    padding: 50px;
+    padding: 20px;
+    margin: 0;
 }
 
 h1 {
     font-family: 'Josefin Sans', sans-serif;
-    color: #0a9396; /* Verde azulado */
+    color: #0a9396;
 }
 
 .container {
-    max-width: 500px;
+    max-width: 100%;
+    width: 100%;
     margin: 0 auto;
-    background-color: #ffffff; /* Fondo blanco para el contenedor */
+    background-color: #ffffff;
     padding: 20px;
-    border-radius: 15px; /* Bordes redondeados */
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); /* Sombra suave */
-    border: 3px solid #005f73; /* Azul oscuro para borde */
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    border: 3px solid #005f73;
+    box-sizing: border-box;
 }
 
 textarea {
-    width: calc(100% - 20px);
+    width: 100%;
     height: 120px;
     margin-bottom: 20px;
     padding: 10px;
-    border: 2px solid #0a9396; /* Borde verde azulado */
+    border: 2px solid #0a9396;
     border-radius: 8px;
     resize: none;
-    font-family: 'Mukta', sans-serif; /* Fuente Mukta */
+    font-family: 'Mukta', sans-serif;
     font-size: 16px;
-    background-color: #e9ecef; /* Fondo gris suave */
-}
-
-canvas {
-    margin-top: 20px;
-}
-
-.winner {
-    margin-top: 20px;
-    font-size: 28px;
-    color: #005f73; /* Azul oscuro para texto del ganador */
-    font-family: 'Lobster', cursive; /* Fuente Langosta */
+    background-color: #e9ecef;
 }
 
 button {
     padding: 12px 24px;
-    background-color: #0a9396; /* Verde azulado */
+    background-color: #0a9396;
     color: #fff;
     border: none;
     border-radius: 8px;
@@ -55,23 +48,41 @@ button {
     font-size: 18px;
     transition: background-color 0.3s ease;
     margin-top: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra en botones */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 button:hover {
-    background-color: #005f73; /* Cambiar a azul oscuro al pasar el ratón */
+    background-color: #005f73;
 }
 
-/* Estilos del modal (popup) */
+canvas {
+    margin-top: 20px;
+    max-width: 100%;
+    width: 100%;
+    height: auto;
+    box-sizing: border-box;
+}
+
+.winner {
+    margin-top: 20px;
+    font-size: 28px;
+    color: #005f73;
+    font-family: 'Lobster', cursive;
+}
+
+.ads-container {
+    margin-top: 20px;
+}
+
 .modal {
-    display: none; /* Oculto por defecto */
+    display: none;
     position: fixed;
     z-index: 1;
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.7); /* Fondo oscuro con mayor opacidad */
+    background-color: rgba(0, 0, 0, 0.7);
     justify-content: center;
     align-items: center;
 }
@@ -83,25 +94,30 @@ button:hover {
     text-align: center;
     width: 320px;
     font-family: 'Lobster', cursive;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* Sombra más intensa */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
 
-.modal-content h2 {
-    margin-bottom: 20px;
-    font-size: 28px;
-    color: #005f73; /* Azul oscuro */
-}
+/* Media queries para hacer el proyecto responsivo */
+@media (max-width: 600px) {
+    h1 {
+        font-size: 24px;
+    }
 
-.modal-content button {
-    padding: 12px 24px;
-    background-color: #0a9396; /* Verde azulado */
-    color: white;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra en botón del modal */
-}
+    button {
+        font-size: 16px;
+        padding: 10px 20px;
+    }
 
-.modal-content button:hover {
-    background-color: #005f73; /* Azul oscuro */
+    .modal-content {
+        width: 90%;
+    }
+
+    .winner {
+        font-size: 24px;
+    }
+
+    textarea {
+        font-size: 14px;
+        height: 100px;
+    }
 }
