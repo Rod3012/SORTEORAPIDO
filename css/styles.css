@@ -14,9 +14,9 @@ h1 {
 }
 
 .container {
-    max-width: 100%;
-    width: 100%;
-    margin: 0 auto;
+    max-width: 800px; /* Añadimos un máximo de ancho */
+    width: 90%; /* Ocupa el 90% del ancho de la pantalla en pantallas más pequeñas */
+    margin: 0 auto; /* Centramos el contenedor */
     background-color: #ffffff;
     padding: 20px;
     border-radius: 15px;
@@ -97,7 +97,7 @@ canvas {
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
 
-/* Media queries para hacer el proyecto responsivo */
+/* Media queries para pantallas pequeñas */
 @media (max-width: 600px) {
     h1 {
         font-size: 24px;
@@ -122,8 +122,3 @@ canvas {
     }
 }
 
-    textarea {
-        font-size: 14px;
-        height: 100px;
-    }
-}
