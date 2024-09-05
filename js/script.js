@@ -13,8 +13,18 @@ window.onload = function() {
     // Inicializar la ruleta vacía
     canvas = document.getElementById("wheelCanvas");
     ctx = canvas.getContext("2d");
+    resizeCanvas();
     drawWheel();
 };
+
+window.onresize = resizeCanvas;
+
+function resizeCanvas() {
+    const containerWidth = document.querySelector('.container').offsetWidth;
+    canvas.width = containerWidth * 0.9; // La ruleta ocupará el 90% del ancho del contenedor
+    canvas.height = canvas.width; // Mantener la ruleta como un círculo
+    drawWheel();
+}
 
 function updateWheel() {
     participants = document.getElementById("participants").value.split(' ').map(p => p.trim()).filter(p => p !== '');
@@ -24,13 +34,13 @@ function updateWheel() {
 
 function drawWheel() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    const outsideRadius = 150;
-    const textRadius = 120;
-    const insideRadius = 50;
+    const outsideRadius = canvas.width / 2.6;
+    const textRadius = canvas.width / 3;
+    const insideRadius = canvas.width / 8;
 
     if (participants.length === 0) {
         ctx.font = 'bold 20px Quicksand';
-        ctx.fillText('Agrega participantes', 200 - ctx.measureText('Agrega participantes').width / 2, 200);
+        ctx.fillText('Agrega participantes', canvas.width / 2 - ctx.measureText('Agrega participantes').width / 2, canvas.height / 2);
         return;
     }
 
@@ -44,14 +54,14 @@ function drawWheel() {
         ctx.fillStyle = colors[i % colors.length];
 
         ctx.beginPath();
-        ctx.arc(200, 200, outsideRadius, angle, angle + arc, false);
-        ctx.arc(200, 200, insideRadius, angle + arc, angle, true);
+        ctx.arc(canvas.width / 2, canvas.height / 2, outsideRadius, angle, angle + arc, false);
+        ctx.arc(canvas.width / 2, canvas.height / 2, insideRadius, angle + arc, angle, true);
         ctx.stroke();
         ctx.fill();
 
         ctx.save();
         ctx.fillStyle = "white";
-        ctx.translate(200 + Math.cos(angle + arc / 2) * textRadius, 200 + Math.sin(angle + arc / 2) * textRadius);
+        ctx.translate(canvas.width / 2 + Math.cos(angle + arc / 2) * textRadius, canvas.height / 2 + Math.sin(angle + arc / 2) * textRadius);
         ctx.rotate(angle + arc / 2 + Math.PI / 2);
         const text = participants[i];
         ctx.fillText(text, -ctx.measureText(text).width / 2, 0);
@@ -63,11 +73,13 @@ function drawWheel() {
 }
 
 function drawArrow() {
+    const centerX = canvas.width / 2;
+    const centerY = canvas.height / 2;
     ctx.fillStyle = "red";
     ctx.beginPath();
-    ctx.moveTo(200 - 10, 200 - 160); // Punto izquierdo de la flecha
-    ctx.lineTo(200 + 10, 200 - 160); // Punto derecho de la flecha
-    ctx.lineTo(200, 200 - 130);      // Punta de la flecha
+    ctx.moveTo(centerX - 10, centerY - (canvas.width / 2 + 20)); // Punto izquierdo de la flecha
+    ctx.lineTo(centerX + 10, centerY - (canvas.width / 2 + 20)); // Punto derecho de la flecha
+    ctx.lineTo(centerX, centerY - (canvas.width / 2 - 10));      // Punta de la flecha
     ctx.closePath();
     ctx.fill();
 }
