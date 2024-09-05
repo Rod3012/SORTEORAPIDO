@@ -121,3 +121,9 @@ canvas {
         height: 100px;
     }
 }
+
+    textarea {
+        font-size: 14px;
+        height: 100px;
+    }
+}
