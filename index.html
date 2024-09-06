@@ -8,7 +8,7 @@
     <title>Sorteo Rápido con Ruleta</title>
     
     <!-- Enlace al archivo de CSS -->
-    <link rel="stylesheet" href="Css/styles.css">
+    <link rel="stylesheet" href="css/styles.css">
     
     <!-- Importar fuentes Quicksand, Josefin Sans, Lobster, Mukta desde Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@700&family=Lobster&family=Mukta:wght@400;600&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
@@ -23,8 +23,8 @@
         <p>Ingresa los nombres de los participantes, separados por espacios:</p>
         <textarea id="participants" placeholder="Ejemplo: Juan María Pedro" oninput="updateWheel()"></textarea>
         <br><br>
-        <button onclick="spinWheel()">¡Girar Ruleta!</button>
-        <canvas id="wheelCanvas"></canvas>
+        <!-- Botón para abrir el modal con la ruleta -->
+        <button onclick="openWheelModal()">Abrir Ruleta</button>
         <div class="winner" id="winner"></div>
 
         <!-- Bloque de anuncio de Google AdSense -->
@@ -40,18 +40,25 @@
             </script>
         </div>
 
-        <!-- Modal Popup -->
+        <!-- Modal Popup para la ruleta -->
+        <div id="wheelModal" class="modal">
+            <div class="modal-content">
+                <canvas id="wheelCanvas"></canvas>
+                <br>
+                <button onclick="closeWheelModal()">Cerrar Ruleta</button>
+            </div>
+        </div>
+
+        <!-- Modal Popup para mostrar al ganador -->
         <div id="winnerModal" class="modal">
             <div class="modal-content">
                 <h2 id="winnerName">¡Ganador!</h2>
-                <button onclick="closeModal()">Cerrar</button>
+                <button onclick="closeWinnerModal()">Cerrar</button>
             </div>
         </div>
 
         <!-- Enlace al archivo de JavaScript -->
-        <script src="Js/script.js"></script>
+        <script src="js/script.js"></script>
     </div>
 </body>
 </html>
-
-
