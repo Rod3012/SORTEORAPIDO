@@ -14,9 +14,9 @@ h1 {
 }
 
 .container {
-    max-width: 800px; /* Añadimos un máximo de ancho */
-    width: 90%; /* Ocupa el 90% del ancho de la pantalla en pantallas más pequeñas */
-    margin: 0 auto; /* Centramos el contenedor */
+    max-width: 800px;
+    width: 90%;
+    margin: 0 auto;
     background-color: #ffffff;
     padding: 20px;
     border-radius: 15px;
@@ -36,6 +36,7 @@ textarea {
     font-family: 'Mukta', sans-serif;
     font-size: 16px;
     background-color: #e9ecef;
+    box-sizing: border-box;
 }
 
 button {
@@ -56,7 +57,6 @@ button:hover {
 }
 
 canvas {
-    margin-top: 20px;
     max-width: 100%;
     width: 100%;
     height: auto;
@@ -74,6 +74,7 @@ canvas {
     margin-top: 20px;
 }
 
+/* Estilos del modal */
 .modal {
     display: none;
     position: fixed;
@@ -92,9 +93,15 @@ canvas {
     padding: 20px;
     border-radius: 15px;
     text-align: center;
-    width: 320px;
-    font-family: 'Lobster', cursive;
+    width: 90%;
+    max-width: 500px; /* Limitar el tamaño máximo del modal a 500px */
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+canvas {
+    width: 90%; /* Hacer que el canvas ocupe el 90% del modal */
+    height: auto;
+    max-width: 400px; /* Limitar el tamaño máximo del canvas */
 }
 
 /* Media queries para pantallas pequeñas */
@@ -121,4 +128,3 @@ canvas {
         height: 100px;
     }
 }
-
