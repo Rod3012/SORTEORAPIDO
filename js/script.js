@@ -10,18 +10,26 @@ let participants = [];
 const colors = ["#EE9B00", "#94D2BD", "#E9D8A6", "#CA6702", "#BB3E03", "#AE2012", "#0A9396", "#005F73"];
 
 window.onload = function() {
-    // Inicializar la ruleta vacía
     canvas = document.getElementById("wheelCanvas");
     ctx = canvas.getContext("2d");
+};
+
+function openWheelModal() {
+    document.getElementById('wheelModal').style.display = 'flex';
     resizeCanvas();
     drawWheel();
-};
+    spinWheel();  // Hacemos que la ruleta gire automáticamente al abrir el modal
+}
+
+function closeWheelModal() {
+    document.getElementById('wheelModal').style.display = 'none';
+}
 
 window.onresize = resizeCanvas;
 
 function resizeCanvas() {
-    const containerWidth = document.querySelector('.container').offsetWidth;
-    canvas.width = containerWidth * 0.9; // La ruleta ocupará el 90% del ancho del contenedor
+    const modalContent = document.querySelector('.modal-content');
+    canvas.width = modalContent.offsetWidth * 0.9; // La ruleta ocupará el 90% del ancho del modal
     canvas.height = canvas.width; // Mantener la ruleta como un círculo
     drawWheel();
 }
@@ -46,7 +54,6 @@ function drawWheel() {
 
     ctx.strokeStyle = "black";
     ctx.lineWidth = 2;
-    ctx.font = 'bold 14px Quicksand';
 
     // Dibuja cada segmento
     for (let i = 0; i < participants.length; i++) {
@@ -61,9 +68,22 @@ function drawWheel() {
 
         ctx.save();
         ctx.fillStyle = "white";
+
+        // Configurar fuente dinámicamente basada en el tamaño del canvas
+        let fontSize = Math.min(canvas.width / 25, 16); // Ajustar tamaño de fuente dinámicamente
+        ctx.font = `bold ${fontSize}px Quicksand`;
+
+        // Colocar el texto alineado con el ángulo del segmento
         ctx.translate(canvas.width / 2 + Math.cos(angle + arc / 2) * textRadius, canvas.height / 2 + Math.sin(angle + arc / 2) * textRadius);
         ctx.rotate(angle + arc / 2 + Math.PI / 2);
+
         const text = participants[i];
+        // Ajustar para que el texto no sobrepase el tamaño del segmento
+        const textWidth = ctx.measureText(text).width;
+        if (textWidth > arc * textRadius * 0.8) {
+            ctx.scale(0.8, 0.8);  // Escalar el texto si es demasiado largo
+        }
+
         ctx.fillText(text, -ctx.measureText(text).width / 2, 0);
         ctx.restore();
     }
@@ -116,13 +136,14 @@ function stopRotateWheel() {
     const winner = participants[index];
 
     document.getElementById("winnerName").innerText = `¡El ganador es: ${winner}!`;
-    document.getElementById('winnerModal').style.display = 'flex';
+    document.getElementById('wheelModal').style.display = 'none'; // Cerrar modal de ruleta
+    document.getElementById('winnerModal').style.display = 'flex'; // Abrir modal del ganador
     
     const winnerSound = document.getElementById('winnerSound');
-    winnerSound.play();
+    if (winnerSound) winnerSound.play();
 }
 
-function closeModal() {
+function closeWinnerModal() {
     document.getElementById('winnerModal').style.display = 'none';
 }
 
